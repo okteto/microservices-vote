@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: vote
+    dev.okteto.com/deployed-by: microservices-vote
   name: vote
 spec:
   type: ClusterIP

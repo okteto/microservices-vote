@@ -7,7 +7,8 @@ build:
   vote: .
 
 deploy:
-  - helm upgrade --install vote chart --set image=${OKTETO_BUILD_VOTE_IMAGE}
+  # - helm upgrade --install vote chart --set image=${OKTETO_BUILD_VOTE_IMAGE}
+  - kubectl apply -f application.yml
 
 dev:
   vote:

@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-vote
+spec:
+  destination:
+    namespace: pchico83
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/okteto/microservices-vote
+    targetRevision: argocd
+    path: chart
+    helm:
+      version: v3
+      releaseName: vote
+      parameters:
+      - name: image
+        value: okteto.dev/microservices-vote-vote:okteto
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+    - /metadata

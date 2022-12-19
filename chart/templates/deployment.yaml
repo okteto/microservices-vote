@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: vote
+    dev.okteto.com/deployed-by: microservices-vote
   name: vote
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: vote
+        dev.okteto.com/deployed-by: microservices-vote
     spec:
       containers:
       - image: {{ .Values.image }}
